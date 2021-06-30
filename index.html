@@ -26,7 +26,10 @@
       const result = await resp.json()
 
       result.items.forEach(i => {
-        divResults.appendChild(document.createTextNode(i.full_name))
+        const anchor = document.createElement('a')
+        anchor.href = i.html_url
+        anchor.textContent = i.full_name
+        divResults.appendChild(anchor)
         divResults.appendChild(document.createElement('br'))
       })
 
