@@ -8,7 +8,8 @@
 </head>
 <body>
   <h1>Github Repos</h1>
-  <button id='btnRepos'>Click me</button>
+  <button id='btnRepos'>show repo</button>
+  <button id='btnClear'>clear result</button>
   <div id = 'divResults'>
 
   </div>
@@ -16,8 +17,11 @@
   <script>
     const btnRepos = document.getElementById('btnRepos')
     const divResults = document.getElementById('divResults')
+    const btnClear = document.getElementById('btnClear')
 
     btnRepos.addEventListener('click', getRepos)
+
+    btnClear.addEventListener('click', clear)
 
     async function getRepos(){
       const url = "https://api.github.com/search/repositories?q=stars:200000..300000"
@@ -32,9 +36,10 @@
         divResults.appendChild(anchor)
         divResults.appendChild(document.createElement('br'))
       })
+    }
 
-
-      console.log(result)
+    function clear(){
+      while(divResults.firstChild) divResults.removeChild(divResults.firstChild)
     }
   </script>
 </body>
