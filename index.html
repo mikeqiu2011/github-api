@@ -7,7 +7,8 @@
   <title>Document</title>
 </head>
 <body>
-  <button id='btnRepos'></button>
+  <h1>Github Repos</h1>
+  <button id='btnRepos'>Click me</button>
   <div id = 'divResults'>
 
   </div>
@@ -19,10 +20,17 @@
     btnRepos.addEventListener('click', getRepos)
 
     async function getRepos(){
-      const url = "https://api.github.com"
+      const url = "https://api.github.com/search/repositories?q=stars:>100000"
       const resp = await fetch(url)
 
       const result = await resp.json()
+
+      result.items.forEach(i => {
+        divResults.appendChild(document.createTextNode(i.full_name))
+        divResults.appendChild(document.createElement('br'))
+      })
+
+
       console.log(result)
     }
   </script>
